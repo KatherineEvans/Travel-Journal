@@ -10,11 +10,12 @@ class Api::TripsController < ApplicationController
     trip = Trip.new(
       location: params[:location],
       description: params[:description],
+      user_id: current_user.id
     )
     if trip.save
       render json: {message: 'Trip created successfully'}, status: :created
     else
-      render json: {errors: user.errors.full_messages}, status: :bad_request
+      render json: {errors: trip.errors.full_messages}, status: :bad_request
     end
   end
 
@@ -40,4 +41,5 @@ class Api::TripsController < ApplicationController
     @trip.destroy
     render json: {message: "Your account has been deleted."}
   end
+
 end
