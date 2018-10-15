@@ -1,5 +1,6 @@
 class Post < ApplicationRecord
-
+  has_one_attached :photo
+  
   validates :photo, presence: true
   validates :location, presence: true
   validates :trip_id, presence: true
